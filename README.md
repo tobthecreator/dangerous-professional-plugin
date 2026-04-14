@@ -31,6 +31,22 @@ claude plugin add tobthecreator/dangerous-professional-plugin
 codex plugin install tobthecreator/dangerous-professional-plugin
 ```
 
+### Any Agent (Cursor, Windsurf, Cline, Copilot, 40+ others)
+
+Via the [skills ecosystem](https://github.com/vercel-labs/skills):
+
+```bash
+npx skills add tobthecreator/dangerous-professional-plugin
+```
+
+Target a specific agent:
+
+```bash
+npx skills add tobthecreator/dangerous-professional-plugin -a cursor
+npx skills add tobthecreator/dangerous-professional-plugin -a windsurf
+npx skills add tobthecreator/dangerous-professional-plugin -a cline
+```
+
 ## Usage
 
 The skill triggers automatically when you describe a dispute with an institution. You can also invoke it explicitly:
@@ -74,18 +90,21 @@ This is a community project with no affiliation to Patrick McKenzie or Stripe.
 ## Project Structure
 
 ```
-.claude-plugin/plugin.json          # Claude Code manifest
-.codex-plugin/plugin.json           # Codex CLI manifest
-skills/dangerous-professional/      # Claude Code skill
+.claude-plugin/
+  plugin.json                       # Claude Code manifest
+  marketplace.json                  # Claude Code marketplace entry
+.codex-plugin/
+  plugin.json                       # Codex CLI manifest
+skills/dangerous-professional/      # Universal skill (Codex, npx skills, 40+ agents)
   SKILL.md
+  agents/openai.yaml                # Codex UI metadata
   references/                       # Shared reference files (source of truth)
-codex-skills/dangerous-professional/ # Codex CLI skill
+claude-skills/dangerous-professional/ # Claude Code skill
   SKILL.md
-  agents/openai.yaml
   references -> symlink to shared
 ```
 
-The five reference files (principles, tone guide, escalation paths, examples, gotchas) are shared between both platforms. The SKILL.md files differ only in frontmatter format and path conventions.
+The five reference files (principles, tone guide, escalation paths, examples, gotchas) live in `skills/` and are shared via symlink. The `skills/` SKILL.md uses relative paths (universal); the `claude-skills/` version uses `${CLAUDE_SKILL_DIR}` variable substitution required by Claude Code.
 
 ## Contributing
 

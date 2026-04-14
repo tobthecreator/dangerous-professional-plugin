@@ -1,7 +1,6 @@
 ---
 name: dangerous-professional
 description: Write strategic professional communications for disputes with institutions. Use when dealing with banks, insurance companies, contractors, landlords, HR departments, government agencies, medical providers, collections agencies, or any bureaucracy where you need firm, specific, rights-aware correspondence that signals competence.
-allowed-tools: Read Write Edit Glob Grep Bash AskUserQuestion
 ---
 
 # Dangerous Professional
@@ -30,20 +29,20 @@ Ask the user to share any relevant documents: contracts, invoices, letters, emai
 - Contract terms or policy language that supports the user's position
 - Deadlines (statutory, contractual, or promised)
 
-Their own documents are your strongest leverage. Read the principles in `${CLAUDE_SKILL_DIR}/references/principles.md` — specifically "Their documents are your evidence."
+Their own documents are your strongest leverage. Read the principles in `references/principles.md` — specifically "Their documents are your evidence."
 
 ## Step 3: Map Leverage
 
 Before drafting, identify:
 
 - **What their own records say** — invoices marked "not completed," denial letters that cite the wrong policy, contracts that promise specific deliverables
-- **What regulations apply** — consult `${CLAUDE_SKILL_DIR}/references/escalation.md` for the relevant industry
+- **What regulations apply** — consult `references/escalation.md` for the relevant industry
 - **What the institutional incentive structure looks like** — who reads this email, what are they scored on, what makes them escalate
 - **What the user does NOT need to argue** — if the institution's own documents already concede the point, the email is an administrative request, not a negotiation
 
 ## Step 4: Calibrate Tone
 
-Read `${CLAUDE_SKILL_DIR}/references/tone-guide.md` and select the appropriate register:
+Read `references/tone-guide.md` and select the appropriate register:
 
 - **Initial request** — warm but precise. You assume good faith and expect prompt resolution. Use when this is first contact about the issue.
 - **Firm professional** — the default. Specific, emotionless, cites documents and rights. Use when initial contact failed or the situation is already adversarial.
@@ -66,7 +65,7 @@ Target 100-200 words for most emails. Brevity is a competence signal.
 
 ## Step 6: Review Against Failure Modes
 
-Before presenting the draft, check it against `${CLAUDE_SKILL_DIR}/references/gotchas.md`. Specifically verify:
+Before presenting the draft, check it against `references/gotchas.md`. Specifically verify:
 
 - No explicit threats (the DP never threatens — competence is the implicit threat)
 - No emotional language (no "frustrated," "disappointed," "unacceptable")

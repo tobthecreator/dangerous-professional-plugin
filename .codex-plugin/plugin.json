@@ -9,7 +9,7 @@
   "repository": "https://github.com/tobthecreator/dangerous-professional-plugin",
   "license": "MIT",
   "keywords": ["communication", "negotiation", "dispute", "professional", "patio11"],
-  "skills": "./codex-skills/",
+  "skills": "./skills/",
   "interface": {
     "displayName": "Dangerous Professional",
     "shortDescription": "Strategic professional correspondence using patio11's framework",
