@@ -1,0 +1,60 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install PyYAML
+        run: pip install pyyaml
+
+      - name: Validate JSON manifests
+        run: |
+          for f in .claude-plugin/plugin.json .claude-plugin/marketplace.json .codex-plugin/plugin.json; do
+            echo "→ $f"
+            python3 -c "import json,sys; json.load(open('$f'))"
+          done
+
+      - name: Validate YAML files
+        run: |
+          python3 -c "
+          import yaml, glob, sys
+          for f in glob.glob('skills/**/*.yaml', recursive=True):
+              print(f'→ {f}')
+              yaml.safe_load(open(f))
+          "
+
+      - name: Validate SKILL.md frontmatter
+        run: |
+          python3 <<'EOF'
+          import re, sys, glob, yaml
+          fail = False
+          for path in glob.glob('skills/**/SKILL.md', recursive=True):
+              print(f'→ {path}')
+              text = open(path).read()
+              m = re.match(r'^---\n(.*?)\n---\n', text, re.DOTALL)
+              if not m:
+                  print(f'  ✗ missing YAML frontmatter')
+                  fail = True
+                  continue
+              data = yaml.safe_load(m.group(1)) or {}
+              skill_fail = False
+              for field in ('name', 'description'):
+                  v = data.get(field)
+                  if not isinstance(v, str) or not v.strip():
+                      print(f'  ✗ frontmatter "{field}" must be a non-empty string')
+                      fail = True
+                      skill_fail = True
+              if not skill_fail:
+                  print(f'  ✓ name="{data["name"]}"')
+          sys.exit(1 if fail else 0)
+          EOF
+
+      - name: Smoke test — skills CLI discovery
+        run: npx -y skills@latest add "$GITHUB_REPOSITORY" --list
