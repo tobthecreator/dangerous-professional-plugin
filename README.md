@@ -1,5 +1,8 @@
 # Dangerous Professional
 
+[![validate](https://github.com/tobthecreator/dangerous-professional-plugin/actions/workflows/validate.yml/badge.svg)](https://github.com/tobthecreator/dangerous-professional-plugin/actions/workflows/validate.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+
 A skill that helps you write firm, specific, rights-aware correspondence when dealing with institutions — banks, insurance companies, contractors, landlords, employers, government agencies, medical providers, collections agencies, or any bureaucracy.
 
 Implements Patrick McKenzie's ([@patio11](https://x.com/patio11)) [Dangerous Professional](https://www.kalzumeus.com/2017/09/09/identity-theft-credit-reports/) framework as an interview-driven workflow that reads your documents, identifies your leverage, calibrates tone, and drafts a communication grounded in the institution's own records.
